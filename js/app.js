@@ -38,10 +38,6 @@ const showProducts = (products) => {
   }
 };
 
-// show details
-
-
-
 // count tax
 let count = 0;
 const addToCart = (id, price) => {
