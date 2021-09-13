@@ -6,26 +6,41 @@ const loadProducts = () => {
 };
 loadProducts();
 
+
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
-    const image = product.images;
+    const image = product.image;
+    const descrip = product.description;
+
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
       <div>
-    <img class="product-image" src=${product.image}></img>
+    <img class="product-image" src=${image}></img>
       </div>
-      <h3>${product.title}</h3>
+      <h4>${product.title}</h4>
       <p>Category: ${product.category}</p>
-      <h2>Price: $ ${product.price}</h2>
+      <h3>Price: $ ${product.price}</h3>
+      <h5>Rating: ${product.rating.rate}</h5>
+      <h5>Customer rated: ${product.rating.count}</h5>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button id="details-btn" class="btn btn-danger">Details</button></div>
+      <button onclick="showDetails()" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
+
     document.getElementById("all-products").appendChild(div);
+    let num = product.id;
+    const urls = `https://fakestoreapi.com/products/${num}`;
+    fetch(urls)
+      .then((response) => response.json())
+      .then((datas) => console.log(datas));
   }
 };
+
+// show details
+
+
 
 // count tax
 let count = 0;
@@ -35,6 +50,7 @@ const addToCart = (id, price) => {
 
   updateTaxAndCharge();
   updateTotal();
+  // showDetails();
   document.getElementById("total-Products").innerText = count;
 };
 
