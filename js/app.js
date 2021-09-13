@@ -6,14 +6,12 @@ const loadProducts = () => {
 };
 loadProducts();
 
-
 // show all product in UI 
 const showProducts = (products) => {
   const allProducts = products.map((pd) => pd);
   for (const product of allProducts) {
     const image = product.image;
     const descrip = product.description;
-
     const div = document.createElement("div");
     div.classList.add("product");
     div.innerHTML = `<div class="single-product">
@@ -26,7 +24,7 @@ const showProducts = (products) => {
       <h5>Rating: ${product.rating.rate}</h5>
       <h5>Customer rated: ${product.rating.count}</h5>
       <button onclick="addToCart(${product.id},${product.price})" id="addToCart-btn" class="buy-now btn btn-success">add to cart</button>
-      <button onclick="showDetails()" id="details-btn" class="btn btn-danger">Details</button></div>
+      <button" id="details-btn" class="btn btn-danger">Details</button></div>
       `;
 
     document.getElementById("all-products").appendChild(div);
@@ -46,7 +44,6 @@ const addToCart = (id, price) => {
 
   updateTaxAndCharge();
   updateTotal();
-  // showDetails();
   document.getElementById("total-Products").innerText = count;
 };
 
